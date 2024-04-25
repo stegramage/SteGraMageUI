@@ -4,13 +4,13 @@ import _SteGraMageCore.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Controller {
+public class Controller implements Observer {
 
 	private SteGraMage _model;
 	private SteGraMageUI _view;
 	private boolean _hiding;
 	
-	public Controller (SteGraMage model, SteGraMageUI view) {
+	public Controller(SteGraMage model, SteGraMageUI view) {
 		_model = model;
 		_model.register(this);
 		_view = view;

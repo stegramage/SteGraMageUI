@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import java.awt.Toolkit;
 
 public class SteGraMageUI {
 
@@ -28,12 +29,16 @@ public class SteGraMageUI {
 		_display.add(_imgOut);
 		_controls = new Controls();
 		_frame = new JFrame();
+		
 	}
 
 	private void setFrame() {
+		_frame.setName("SteGraMage");
 		_frame.setBounds(100, 100, 450, 300);
 		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		_frame.getContentPane().setLayout(new BorderLayout(5, 5));
+		_frame.setTitle("SteGraMage");
+		_frame.setIconImage(Toolkit.getDefaultToolkit().getImage(SteGraMageUI.class.getResource("/resources/logo.png")));
 		
 		_frame.getContentPane().add(_display, BorderLayout.CENTER);
 		_frame.getContentPane().add(_controls, BorderLayout.SOUTH);
