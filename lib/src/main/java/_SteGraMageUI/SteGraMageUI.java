@@ -3,6 +3,8 @@ package _SteGraMageUI;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Toolkit;
@@ -45,7 +47,11 @@ public class SteGraMageUI {
 		
 		_frame.setVisible(true);
 	}
-		
+	
+	public void addSearchButtonListener(ActionListener listener){
+		_controls.addSearchButtonListener(listener);
+	}
+	
 	public void addHideButtonListener(ActionListener listener){
 		_controls.addHideButtonListener(listener);
 	}
@@ -56,6 +62,10 @@ public class SteGraMageUI {
 	
 	public void addClearButtonListener(ActionListener listener){
 		_controls.addClearButtonListener(listener);
+	}
+	
+	public JFileChooser getFileChooser( ) {
+		return _controls.getFileChooser();
 	}
 	
 	public String getMessage( ) {

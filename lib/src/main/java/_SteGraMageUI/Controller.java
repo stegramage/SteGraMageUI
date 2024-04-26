@@ -4,6 +4,8 @@ import _SteGraMageCore.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JFileChooser;
+
 public class Controller implements Observer {
 
 	private SteGraMage _model;
@@ -18,6 +20,18 @@ public class Controller implements Observer {
     }
 
 	private void setButtonActions() {
+		_view.addSearchButtonListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	int r = _view.getFileChooser().showOpenDialog(null);
+            	if (r == JFileChooser.APPROVE_OPTION) {
+                    // set the text field to the path of the selected file
+                    _view.setChannel(_view.getFileChooser().getSelectedFile().getAbsolutePath());
+        			_view.displayChannel(_view.getChannel());                    
+                }
+            }
+        });
+		
 		_view.addHideButtonListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,11 +72,11 @@ public class Controller implements Observer {
 	@Override
 	public void update(SteGraMage st) {
 		if (_hiding) {
-			_view.displayChannel(_view.getChannel());
 			_view.setMessage("");
 			_view.setChannel(_view.getChannel().replaceFirst("\\.png", "_out.png"));
-		} else {
 			_view.displayChannel(_view.getChannel());
+		} else {
+			_view.setChannel("");
 			_view.setMessage(st.getMessageUnhided());
 		}
 	}
