@@ -53,7 +53,7 @@ public class Controls extends JPanel{
 		_fileChooser = new JFileChooser();
 		_fileChooser.setAcceptAllFileFilterUsed(false);
 		_fileChooser.setDialogTitle("Select a .png file");
-		FileNameExtensionFilter restrict = new FileNameExtensionFilter("Only .png files", "png");
+		FileNameExtensionFilter restrict = new FileNameExtensionFilter("Only .png files", "txt");
         _fileChooser.addChoosableFileFilter(restrict);
 	}
 	
