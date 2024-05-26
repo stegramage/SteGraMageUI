@@ -8,6 +8,7 @@ public class Main {
 		
 		SteGraMage model = new SteGraMage();
 		model.configure(new MokingConverter(), new ASCIIMessageInterpreter());
+
 		SteGraMageUI view = new SteGraMageUI("TXT");
 		
 		@SuppressWarnings("unused")
