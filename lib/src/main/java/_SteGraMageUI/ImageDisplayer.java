@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class ImageDisplayer extends JPanel {
+public class ImageDisplayer extends JPanel implements Displayer {
 
 	private JLabel _lblImage;
 	private static final long serialVersionUID = 1L;
@@ -16,12 +16,12 @@ public class ImageDisplayer extends JPanel {
 		add(_lblImage);
 	}
 	
-	void setImage(String image) {
+	public void setImage(String image) {
 		_lblImage.setIcon(new ImageIcon(image));
 		repaint();
 	}
 	
-	void clear() {
+	public void clear() {
 		_lblImage.setIcon(null);
 		repaint();
 	}

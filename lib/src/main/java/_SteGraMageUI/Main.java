@@ -8,7 +8,7 @@ public class Main {
 		
 		SteGraMage model = new SteGraMage();
 		model.configure();
-		SteGraMageUI view = new SteGraMageUI();
+		SteGraMageUI view = new SteGraMageUI("TXT");
 		
 		@SuppressWarnings("unused")
 		Controller controller = new Controller(model, view);
