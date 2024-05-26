@@ -7,7 +7,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		SteGraMage model = new SteGraMage();
-		model.configure(new MokingConverter(), new ASCIIMessageInterpreter());
+		model.configure(new MokingConverter(), new ASCIIMessageCodec());
 
 		SteGraMageUI view = new SteGraMageUI("TXT");
 		
