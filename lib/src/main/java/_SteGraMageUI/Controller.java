@@ -73,7 +73,7 @@ public class Controller implements Observer {
 	public void update(SteGraMage st) {
 		if (_hiding) {
 			_view.setMessage("");
-			_view.setChannel(_view.getChannel().replaceFirst("\\.png", "_out.png"));
+			_view.setChannel(_view.getChannel().replaceFirst("\\.txt", "_out.txt"));
 			_view.displayChannel(_view.getChannel());
 		} else {
 			_view.setChannel("");

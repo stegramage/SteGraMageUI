@@ -14,21 +14,29 @@ public class SteGraMageUI {
 	private JFrame _frame;
 	private Controls _controls;
 	private JPanel _display;
-	private ImageDisplayer _imgIn;
-	private ImageDisplayer _imgOut;
+	private Displayer _imgIn;
+	private Displayer _imgOut;
+	private String _type;
 
-	public SteGraMageUI() {
+	public SteGraMageUI(String type) {
+		_type = type;
 		makeView();
 		setFrame();
 	}
 
 	private void makeView() {
-		_imgIn = new ImageDisplayer();
-		_imgOut = new ImageDisplayer();
+		if (_type.equals("TXT")) {
+			_imgIn = new TextDisplayer();
+			_imgOut = new TextDisplayer();
+		}
+		else {
+			_imgIn = new ImageDisplayer();
+			_imgOut = new ImageDisplayer();
+		}
 		_display = new JPanel();
 		_display.setLayout(new GridLayout(0, 2, 0, 0));
-		_display.add(_imgIn);
-		_display.add(_imgOut);
+		_display.add((JPanel) _imgIn);
+		_display.add((JPanel) _imgOut);
 		_controls = new Controls();
 		_frame = new JFrame();
 		
@@ -77,10 +85,18 @@ public class SteGraMageUI {
 	}
 
 	public void displayChannel(String channel) {
-		if (channel.endsWith("_out.png"))
-			_imgOut.setImage(channel);
-		else
-			_imgIn.setImage(channel);
+		if (_type.equals("TXT")) {	
+			if (channel.endsWith("_out.txt"))
+				_imgOut.setImage(channel);
+			else
+				_imgIn.setImage(channel);
+		}
+		else {
+			if (channel.endsWith("_out.png"))
+				_imgOut.setImage(channel);
+			else
+				_imgIn.setImage(channel);
+		}
 	}
 
 	public void setMessage(String messageUnhided) {
