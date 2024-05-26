@@ -42,18 +42,18 @@ public class Controls extends JPanel{
 	}
 
 	private void createPathComponents() {
-		_lblPath = new JLabel("Path to image");
+		_lblPath = new JLabel("Path to file");
 		_lblPath.setFont(new Font("Dialog", Font.BOLD, 15));
 		_lblPath.setAlignmentX(Component.CENTER_ALIGNMENT);
 		_txtFieldPath = new JTextField();
 		_txtFieldPath.setMaximumSize(new Dimension(2147483647, 200));
 		_txtFieldPath.setFont(new Font("Dialog", Font.PLAIN, 20));
 		_txtFieldPath.setColumns(10);
-		_btnSearch = new JButton("Search Image");
+		_btnSearch = new JButton("Search file");
 		_fileChooser = new JFileChooser();
 		_fileChooser.setAcceptAllFileFilterUsed(false);
-		_fileChooser.setDialogTitle("Select a .png file");
-		FileNameExtensionFilter restrict = new FileNameExtensionFilter("Only .png files", "png");
+		_fileChooser.setDialogTitle("Select a file");
+		FileNameExtensionFilter restrict = new FileNameExtensionFilter("Only txt or png files", "txt", "png");
         _fileChooser.addChoosableFileFilter(restrict);
 	}
 	

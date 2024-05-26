@@ -16,14 +16,16 @@ public class SteGraMageUI {
 	private JPanel _display;
 	private Displayer _imgIn;
 	private Displayer _imgOut;
+	private String _type;
 
 	public SteGraMageUI(String type) {
-		makeView(type);
+		_type = type;
+		makeView();
 		setFrame();
 	}
 
-	private void makeView(String type) {
-		if (type.equals("TXT")) {
+	private void makeView() {
+		if (_type.equals("TXT")) {
 			_imgIn = new TextDisplayer();
 			_imgOut = new TextDisplayer();
 		}
@@ -83,10 +85,18 @@ public class SteGraMageUI {
 	}
 
 	public void displayChannel(String channel) {
-		if (channel.endsWith("_out.png"))
-			_imgOut.setImage(channel);
-		else
-			_imgIn.setImage(channel);
+		if (_type.equals("TXT")) {	
+			if (channel.endsWith("_out.txt"))
+				_imgOut.setImage(channel);
+			else
+				_imgIn.setImage(channel);
+		}
+		else {
+			if (channel.endsWith("_out.png"))
+				_imgOut.setImage(channel);
+			else
+				_imgIn.setImage(channel);
+		}
 	}
 
 	public void setMessage(String messageUnhided) {
