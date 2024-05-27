@@ -28,12 +28,12 @@ dependencies {
     implementation 'com.google.guava:guava:31.1-jre'
 
     // Dependencia de multiproyecto
-    implementation 'com.github.stegramage:SteGraMageCore:devel-SNAPSHOT'
+    implementation 'com.github.stegramage:SteGraMageCore:45c70196e5'
 }
 
-configurations.all {
-    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
-}
+//configurations.all {
+//    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+//}
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
