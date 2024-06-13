@@ -8,76 +8,84 @@ import javax.swing.JFileChooser;
 
 public class Controller implements Observer {
 
-	private SteGraMage _model;
-	private SteGraMageUI _view;
-	private boolean _hiding;
-	
-	public Controller(SteGraMage model, SteGraMageUI view) {
-		_model = model;
-		_model.register(this);
-		_view = view;
-		setButtonActions();
+    private SteGraMage _model;
+    private SteGraMageUI _view;
+    private boolean _hiding;
+
+    public Controller(SteGraMage model, SteGraMageUI view) {
+        _model = model;
+        _model.register(this);
+        _view = view;
+        setButtonActions();
+        setNameListPanelActions();
     }
 
-	private void setButtonActions() {
-		_view.addSearchButtonListener(new ActionListener() {
+    private void setButtonActions() {
+        _view.addSearchButtonListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	int r = _view.getFileChooser().showOpenDialog(null);
-            	if (r == JFileChooser.APPROVE_OPTION) {
+                int r = _view.getFileChooser().showOpenDialog(null);
+                if (r == JFileChooser.APPROVE_OPTION) {
                     // set the text field to the path of the selected file
                     _view.setChannel(_view.getFileChooser().getSelectedFile().getAbsolutePath());
-        			_view.displayChannel(_view.getChannel());                    
+                    _view.displayChannel(_view.getChannel());
                 }
             }
         });
-		
-		_view.addHideButtonListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	_hiding = true;
-            	hide(_view.getMessage(), _view.getChannel());
-            }
-        });
-		
-		_view.addUnhideButtonListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	_hiding = false;
-            	unhide(_view.getChannel());
-            }
-        });
-		
-		_view.addClearButtonListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	clear();
-            }
-        });
-	}
-	
-	private void hide(String message, String channel) {
-		_model.hide(message, channel);		
-	}
 
-	private void unhide(String channel) {
-		_model.unhide(channel);
-	}
-	
-	private void clear() {
-		_model.clearMessageUnhided();
-		_view.clear();
-	}
+        _view.addHideButtonListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                _hiding = true;
+                hide(_view.getMessage(), _view.getChannel());
+            }
+        });
 
-	@Override
-	public void update(SteGraMage st) {
-		if (_hiding) {
-			_view.setMessage("");
-			_view.setChannel(_view.getChannel().replaceFirst("\\.txt", "_out.txt"));
-			_view.displayChannel(_view.getChannel());
-		} else {
-			_view.setChannel("");
-			_view.setMessage(st.getMessageUnhided());
-		}
-	}
+        _view.addUnhideButtonListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                _hiding = false;
+                unhide(_view.getChannel());
+            }
+        });
+
+        _view.addClearButtonListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clear();
+            }
+        });
+    }
+
+    private void setNameListPanelActions() {
+        _view.getNameListPanel().addName("Ejemplo 1");
+        _view.getNameListPanel().addName("Ejemplo 2");
+        _view.getNameListPanel().addName("Ejemplo 3");
+        _view.getNameListPanel().addName("Ejemplo 4");
+    }
+
+    private void hide(String message, String channel) {
+        _model.hide(message, channel);        
+    }
+
+    private void unhide(String channel) {
+        _model.unhide(channel);
+    }
+
+    private void clear() {
+        _model.clearMessageUnhided();
+        _view.clear();
+    }
+
+    @Override
+    public void update(SteGraMage st) {
+        if (_hiding) {
+            _view.setMessage("");
+            _view.setChannel(_view.getChannel().replaceFirst("\\.txt", "_out.txt"));
+            _view.displayChannel(_view.getChannel());
+        } else {
+            _view.setChannel("");
+            _view.setMessage(st.getMessageUnhided());
+        }
+    }
 }
