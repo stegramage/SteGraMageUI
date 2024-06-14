@@ -67,7 +67,6 @@ public class OrderSelector extends JPanel {
                 selectedNames.remove(selectedValue);
             }
         }
-        System.out.println(selectedNames);
     }
 
     public void addName(String name) {

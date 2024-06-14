@@ -66,6 +66,7 @@ public class Controller implements Observer {
     }
 
     private void hide(String message, String channel) {
+    	_model = SteGraMage.createInstance(_view.getPluginsNames());
         _model.hide(message, channel);        
     }
 

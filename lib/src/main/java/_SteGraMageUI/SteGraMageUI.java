@@ -3,6 +3,7 @@ package _SteGraMageUI;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -35,7 +36,6 @@ public class SteGraMageUI {
         _controls = new Controls();
         _frame = new JFrame();
 
-        // Initialize the NameListPanel
         _orderSelector = new OrderSelector();
     }
 
@@ -109,5 +109,9 @@ public class SteGraMageUI {
 
     public OrderSelector getNameListPanel() {
         return _orderSelector;
+    }
+    
+    public List<String> getPluginsNames() {
+        return _orderSelector.getSelectedNames();
     }
 }
