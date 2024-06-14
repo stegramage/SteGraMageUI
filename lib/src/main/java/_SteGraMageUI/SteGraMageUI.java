@@ -102,6 +102,7 @@ public class SteGraMageUI {
     public void clear() {
         _imgIn.clear();
         _imgOut.clear();
+        _orderSelector.clear();
         _controls.setMessage("");
         _controls.setChannel("");
         _frame.getContentPane().repaint();

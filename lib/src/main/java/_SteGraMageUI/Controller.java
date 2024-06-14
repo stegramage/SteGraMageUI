@@ -63,6 +63,7 @@ public class Controller implements Observer {
     private void setNameListPanelActions() {
        for (String s : _plugins)
     	   _view.getNameListPanel().addName(s);
+       _view.getNameListPanel().repaint();
     }
 
     private void hide(String message, String channel) {
@@ -77,6 +78,7 @@ public class Controller implements Observer {
     private void clear() {
         _model.clearMessageUnhided();
         _view.clear();
+        setNameListPanelActions();
     }
 
     @Override

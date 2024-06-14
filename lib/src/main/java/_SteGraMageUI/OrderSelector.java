@@ -14,6 +14,8 @@ public class OrderSelector extends JPanel {
     private JList<String> rightList;
     private DefaultListModel<String> rightListModel;
     private ArrayList<String> selectedNames;
+	private JScrollPane leftScrollPane;
+	private JScrollPane rightScrollPane;
 
     public OrderSelector () {
         setLayout(new GridLayout(1, 2));
@@ -22,12 +24,12 @@ public class OrderSelector extends JPanel {
         // Initialize left list
         leftListModel = new DefaultListModel<>();
         leftList = new JList<>(leftListModel);
-        JScrollPane leftScrollPane = new JScrollPane(leftList);
+        leftScrollPane = new JScrollPane(leftList);
 
         // Initialize right list
         rightListModel = new DefaultListModel<>();
         rightList = new JList<>(rightListModel);
-        JScrollPane rightScrollPane = new JScrollPane(rightList);
+        rightScrollPane = new JScrollPane(rightList);
 
         // Buttons to move items between lists
         JPanel buttonPanel = new JPanel();
@@ -75,5 +77,12 @@ public class OrderSelector extends JPanel {
 
     public ArrayList<String> getSelectedNames() {
         return selectedNames;
+    }
+    
+    public void clear() {
+    	leftListModel.removeAllElements();
+    	rightListModel.removeAllElements();
+    	selectedNames = new ArrayList<>();
+    	repaint();
     }
 }
