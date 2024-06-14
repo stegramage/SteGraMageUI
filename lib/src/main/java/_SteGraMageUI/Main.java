@@ -5,11 +5,11 @@ import _SteGraMageCore.*;
 public class Main {
 
 	public static void main(String[] args) {
+		SteGraMage.loadPlugins("plugins/");
 		
-		SteGraMage model = new SteGraMage();
-		model.configure(new MokingConverter(), new ASCIIMessageCodec());
-
-		SteGraMageUI view = new SteGraMageUI("TXT");
+		SteGraMage model = SteGraMage.defaultInstance();
+		
+		SteGraMageUI view = new SteGraMageUI();
 		
 		@SuppressWarnings("unused")
 		Controller controller = new Controller(model, view);
