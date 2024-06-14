@@ -3,6 +3,7 @@ package _SteGraMageUI;
 import _SteGraMageCore.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Set;
 
 import javax.swing.JFileChooser;
 
@@ -10,11 +11,13 @@ public class Controller implements Observer {
 
     private SteGraMage _model;
     private SteGraMageUI _view;
+    private Set<String> _plugins;
     private boolean _hiding;
 
     public Controller(SteGraMage model, SteGraMageUI view) {
         _model = model;
         _model.register(this);
+        _plugins = SteGraMage.getPlugins();
         _view = view;
         setButtonActions();
         setNameListPanelActions();
@@ -58,10 +61,8 @@ public class Controller implements Observer {
     }
 
     private void setNameListPanelActions() {
-        _view.getNameListPanel().addName("Ejemplo 1");
-        _view.getNameListPanel().addName("Ejemplo 2");
-        _view.getNameListPanel().addName("Ejemplo 3");
-        _view.getNameListPanel().addName("Ejemplo 4");
+       for (String s : _plugins)
+    	   _view.getNameListPanel().addName(s);
     }
 
     private void hide(String message, String channel) {
