@@ -23,8 +23,8 @@ public class TextDisplayer extends JPanel implements Displayer{
 		_lblImage.setLineWrap(true);
 		_lblImage.setWrapStyleWord(true);
 		_lblImage.setEditable(false);
-    JScrollPane scrollPane = new JScrollPane(_lblImage);
-    add(scrollPane);
+		JScrollPane scrollPane = new JScrollPane(_lblImage);
+		add(scrollPane);
 
 	}
 	
