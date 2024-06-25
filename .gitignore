@@ -4,9 +4,10 @@
 # Ignore Gradle build output directory
 build
 
-# Ignore build.gradle
+# Ignore changes to build.gradle
 lib/build.gradle
 
 # Ignore github workflows
-.github/worflows/gradle.yml
+.github/workflows/gradle.yml
+
 
