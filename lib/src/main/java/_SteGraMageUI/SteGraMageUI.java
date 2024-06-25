@@ -3,11 +3,16 @@ package _SteGraMageUI;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import _SteGraMageCore.ASCIIMessageCodec;
+import _SteGraMageCore.ChannelConverter;
+
 import java.awt.Toolkit;
 
 public class SteGraMageUI {
@@ -112,7 +117,16 @@ public class SteGraMageUI {
         return _orderSelector;
     }
     
-    public List<String> getPluginsNames() {
-        return _orderSelector.getSelectedNames();
+    public List<String> getCodecs() {
+    	List<String> ret = new ArrayList<String>();
+    	ret.add(ASCIIMessageCodec.class.getName());
+    	ret.addAll(_orderSelector.getSelectedNames());
+    	return ret;
+    }
+    
+    public List<String> getConverters() {
+    	List<String> ret = new ArrayList<String>();
+    	ret.add(ChannelConverter.class.getName());
+    	return ret;
     }
 }

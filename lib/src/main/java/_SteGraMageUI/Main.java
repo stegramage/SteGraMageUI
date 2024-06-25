@@ -5,14 +5,14 @@ import _SteGraMageCore.*;
 public class Main {
 
 	public static void main(String[] args) {
-		SteGraMage.loadPlugins("plugins/");
+		PluginsLoader loader = new PluginsLoader("plugins/");
 		
-		SteGraMage model = SteGraMage.defaultInstance();
+		SteGraMage model = new SteGraMage();
 		
 		SteGraMageUI view = new SteGraMageUI();
 		
 		@SuppressWarnings("unused")
-		Controller controller = new Controller(model, view);
+		Controller controller = new Controller(model, view, loader);
 	}
 
 }

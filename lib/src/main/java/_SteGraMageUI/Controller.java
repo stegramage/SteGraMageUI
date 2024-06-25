@@ -3,6 +3,7 @@ package _SteGraMageUI;
 import _SteGraMageCore.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.swing.JFileChooser;
@@ -11,19 +12,28 @@ public class Controller implements Observer {
 
     private SteGraMage _model;
     private SteGraMageUI _view;
-    private Set<String> _plugins;
+    private Set<Class<?>> _plugins;
+    private Set<String> _pluginsNames;
     private boolean _hiding;
 
-    public Controller(SteGraMage model, SteGraMageUI view) {
+    public Controller(SteGraMage model, SteGraMageUI view, PluginsLoader loader) {
         _model = model;
         _model.register(this);
-        _plugins = SteGraMage.getPlugins();
+        _plugins = loader.getPlugins();
+        _pluginsNames = getPluginsNames(loader.getPlugins());
         _view = view;
         setButtonActions();
         setNameListPanelActions();
     }
 
-    private void setButtonActions() {
+    private Set<String> getPluginsNames(Set<Class<?>> plugins) {
+		Set<String> ret = new HashSet<String>();
+		for (Class<?> c : plugins)
+			ret.add(c.getName());
+		return ret;
+	}
+
+	private void setButtonActions() {
         _view.addSearchButtonListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -61,17 +71,18 @@ public class Controller implements Observer {
     }
 
     private void setNameListPanelActions() {
-       for (String s : _plugins)
+       for (String s : _pluginsNames)
     	   _view.getNameListPanel().addName(s);
        _view.getNameListPanel().repaint();
     }
 
     private void hide(String message, String channel) {
-    	_model = SteGraMage.createInstance(_view.getPluginsNames());
+    	Configurator.configure(_model, _plugins, _view.getCodecs(), _view.getConverters());
         _model.hide(message, channel);        
     }
 
     private void unhide(String channel) {
+    	Configurator.configure(_model, _plugins, _view.getCodecs(), _view.getConverters());
         _model.unhide(channel);
     }
 
